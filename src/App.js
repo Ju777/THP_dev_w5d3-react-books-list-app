@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './styles/App.css';
 import DisplayBooksList from "./components/DisplayBookList";
 import SearchBar from "./components/SearchBar";
@@ -8,7 +8,6 @@ const booksListBackUp = (data.books[0]);
 // const booksList = [...booksListBackUp];
 
 function App() {
-  const [ displayList, setDisplayList ] = useState(true);
   const [ booksList, setBooksList ] = useState([...booksListBackUp]);
   const [ filteredList, setFilteredList ] = useState([...booksList])
   const [ keywords, setKeywords ] = useState('');
@@ -43,7 +42,7 @@ function App() {
   function searchKeywords(){
     var filteredArray = [];
     filteredArray = booksList.filter(book => book.title.toLowerCase().includes(keywords))
-    setFilteredList([...filteredArray]);  
+    filteredArray.length === 0 ? alert("Aucun résultat.") : setFilteredList([...filteredArray]);  
   }
 
   function updateFavFilter()
@@ -72,15 +71,15 @@ function App() {
     setFilteredList([...filteredArray]);
   }
 
-  // A DISPARAITRE 
-  function consoleLog(){
-    console.log(booksList);
-  }
+
+  // function consoleLog(){
+  //   console.log(booksList);
+  // }
 
   return (
       <div className="main-container">
         <h1>Welcome to BOOKS LIST</h1>
-        {/* A DISPARAITRE */} <button onClick = { () => consoleLog()}>Console.log de booksList</button> 
+        {/* <button onClick = { () => consoleLog()}>Console.log de booksList</button> */}
         <SearchBar
           updateKeyWords={updateKeyWords}
           favFilter={favFilter}

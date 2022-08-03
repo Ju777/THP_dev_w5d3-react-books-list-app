@@ -1,5 +1,5 @@
 .bookList-container{
-    border : 5px solid salmon;
+    /* border : 5px solid salmon; */
     display : grid;
     grid-template-columns: 1fr 1fr;
 }
