@@ -8,7 +8,7 @@ function DisplayBooksList({booksList, updateFavoriteStatus, updateReadStatus}){
             {
               booksList.map(book => (
                 <div className='book-card'>
-                    {book.title}<br/>
+                    <h2>{book.title}</h2>
                     <img src={book.thumbnailUrl} alt="book cover" /><br/>
                     {book.shortDescription}<br/>
                     {

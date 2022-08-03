@@ -2,7 +2,7 @@
 
 # REACT application from a JSON file.
 
-## The today exercice's aim is to create an app for a fictive librarian. The man wants an app that allowed readers to create a list containing their favorite nooks and the books they plan to read.
+## The today exercice's aim is to create an app for a fictive librarian. The man wants an app that allowed readers to create a list containing their favorite nooks and the books they plan to read. The book DB is provided by a JSON file.
 
 #### How to use this repo ?
     - Clone this repo in your local computer.

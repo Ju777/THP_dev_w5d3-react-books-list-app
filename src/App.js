@@ -12,8 +12,8 @@ function App() {
   const [ booksList, setBooksList ] = useState([...booksListBackUp]);
   const [ filteredList, setFilteredList ] = useState([...booksList])
   const [ keywords, setKeywords ] = useState('');
-  const [ favFilter, setFavFilter ] = useState(true);
-  const [ readFilter, setReadFilter ] = useState(true);
+  const [ favFilter, setFavFilter ] = useState(null);
+  const [ readFilter, setReadFilter ] = useState(null);
 
   // useEffect( () => console.log('useEffect'), []);
 
@@ -37,68 +37,42 @@ function App() {
   // Les fonctions de filtrage des livres
 
   function updateKeyWords(e){
-    // const keyWords = e.target.value;
     setKeywords(e.target.value);
-    console.log('keywords', keywords);
-    // filtering(keywords);
   }
  
   function searchKeywords(){
-    console.log("Filtrage keywords / fav / red : ", keywords, favFilter, readFilter);
-
     var filteredArray = [];
-
     filteredArray = booksList.filter(book => book.title.toLowerCase().includes(keywords))
-    console.log('filteredArray', filteredArray);  
-
     setFilteredList([...filteredArray]);  
   }
 
   function updateFavFilter()
   {
-    // console.log('favFilter est à ', favFilter)
     setFavFilter(!favFilter);
-    // console.log('favFilter est passé à ', favFilter)
     filterByFav();
-    // filterFavRead();
   }
 
   function filterByFav(){
     var filteredArray = [];
-    if (favFilter) { filteredArray = booksList.filter (book => book.isFav );}
-    else filteredArray = [...booksList]
+    // Obligé d'inverser comme c'est expliqué dans SearchBar.js
+    favFilter ? filteredArray = [...booksList] : filteredArray = booksList.filter(book => book.isFav )
     setFilteredList([...filteredArray]);
   }
 
   function updateReadFilter()
   {
-    // console.log('readFilter est à ', readFilter)
     setReadFilter(!readFilter);
-    // console.log('readFilter est passé à ', readFilter)
     filterByRead();
-    // filterFavRead();
   }
 
   function filterByRead(){
     var filteredArray = [];
-    if (readFilter) { filteredArray= booksList.filter (book => book.read );}
-    else filteredArray = [...booksList]
+    // Obligé d'inverser comme c'est expliqué dans SearchBar.js
+    readFilter ? filteredArray = [...booksList] : filteredArray = booksList.filter(book => book.read )
     setFilteredList([...filteredArray]);
   }
 
-  function filterFavRead(){
-    console.log("Filtrage keywords / fav / red : ", keywords, favFilter, readFilter);
-    var filteredArray = [...booksList];
- 
-  }
-
-
-
-  // A DISPARAITRE QUAND ON SUPPRIMERA LA TERNAIRE sur DisplayList dans le rendu en bas.
-  function updateDisplayList(){
-    setDisplayList(true);
-  }
-
+  // A DISPARAITRE 
   function consoleLog(){
     console.log(booksList);
   }
@@ -115,15 +89,12 @@ function App() {
           updateReadFilter={updateReadFilter}
           searchKeywords={searchKeywords}
         />
-        {/* A DISPARAITRE : supprimer juste la ternaire et afficher le composant DisplayBooksList sans condition*/}
-        { displayList ? 
-          <DisplayBooksList
-              booksList = {filteredList}
-              updateFavoriteStatus = {updateFavoriteStatus}
-              updateReadStatus = {updateReadStatus}
-          /> 
-          : <button onClick={ () => updateDisplayList() }>Afficher la liste de livre</button>
-        }
+ 
+        <DisplayBooksList
+            booksList = {filteredList}
+            updateFavoriteStatus = {updateFavoriteStatus}
+            updateReadStatus = {updateReadStatus}
+        /> 
         
       </div>
   );
