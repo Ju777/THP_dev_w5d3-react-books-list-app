@@ -12,10 +12,10 @@ function DisplayBooksList({booksList, updateFavoriteStatus, updateReadStatus}){
                     <img src={book.thumbnailUrl} alt="book cover" /><br/>
                     {book.shortDescription}<br/>
                     {
-                        book.isFav ? <button onClick = { () => updateFavoriteStatus(book)}>Remove from favorite</button> : <button onClick = { () => updateFavoriteStatus(book)}>Add to favorite</button>
+                        book.isFav ? <button onClick = { () => updateFavoriteStatus(book)} className="btn btn-danger button">Remove from favorite</button> : <button onClick = { () => updateFavoriteStatus(book)} className="btn btn-warning button">Add to favorite</button>
                     }
                     {
-                        book.read ? <button onClick = { () => updateReadStatus(book) }>Remove rom read list</button> : <button onClick = { () => updateReadStatus(book) }>Add to read list</button> 
+                        book.read ? <button onClick = { () => updateReadStatus(book) } className="btn btn-danger button">Remove rom read list</button> : <button onClick = { () => updateReadStatus(book) } className="btn btn-warning button">Add to read list</button> 
                     }
                     
                 </div>
