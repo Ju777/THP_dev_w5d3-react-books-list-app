@@ -6,5 +6,4 @@
     - Clone this repo in your local computer.
     - Go in the repo directory and launch 'npm start'.
     - Your default browser should open automatically.
-    - If not, browse localhost:3000 .
-    - You can go to as well.
+    - If not, browse localhost:3000 ..
